@@ -1,13 +1,16 @@
 package com.movieflix.demo.entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
+//para usar builder precisar do construtor sem argumentos e com todos os argumentos use Lombok
+@Builder //Builder e um padrão de projeto para facilitar a criação de objetos
 @Getter
 @Setter
 @Entity
 @Table(name = "category")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Category {
 
     @Id
