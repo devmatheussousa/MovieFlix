@@ -1,9 +1,7 @@
 package com.movieflix.demo.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -16,12 +14,15 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "movie")
+@Getter
+@Setter
 public class Movie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "title")
     private String title; //Nota: esse é o título do filme, não o título original do filme
 
     private String description; //Nota: essa é a descrição do filme, não a sinopse do filme
