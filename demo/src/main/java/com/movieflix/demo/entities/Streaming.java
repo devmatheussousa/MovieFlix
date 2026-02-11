@@ -3,15 +3,14 @@ package com.movieflix.demo.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
-//para usar builder precisar do construtor sem argumentos e com todos os argumentos use Lombok
 @Builder
+@Entity
 @Getter
 @Setter
-@Entity
-@Table(name = "category")
+@Table(name = "streaming")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Category {
+public class Streaming {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,6 +19,7 @@ public class Category {
     @Column(length = 100, nullable = false)
     private String name;
 
-
-
 }
+
+
+
