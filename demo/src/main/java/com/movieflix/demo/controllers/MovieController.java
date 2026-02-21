@@ -5,6 +5,7 @@ import com.movieflix.demo.controllers.response.MovieResponse;
 import com.movieflix.demo.entities.Movie;
 import com.movieflix.demo.mapper.MovieMapper;
 import com.movieflix.demo.service.MovieService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -61,5 +62,11 @@ public class MovieController {
                 .stream()
                 .map(MovieMapper::toMovieResponse)
                 .toList());
+    }
+
+    @DeleteMapping
+    public ResponseEntity<Void> deleteById(@PathVariable Long id){
+        movieService.findById(id).ifPresent(movie -> movieService.deleteById(movie.getId()));
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }
