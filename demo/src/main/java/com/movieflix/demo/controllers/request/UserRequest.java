@@ -1,7 +1,12 @@
 package com.movieflix.demo.controllers.request;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 
 @Builder
-public record UserRequest(String name, String email, String password) {
+public record UserRequest(
+        @NotBlank String name,
+        @NotBlank @Email String email,
+        @NotBlank String password) {
 }
