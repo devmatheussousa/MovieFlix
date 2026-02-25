@@ -1,5 +1,6 @@
 package com.movieflix.demo.config;
 
+import jakarta.servlet.DispatcherType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,6 +31,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)//Desabilita a proteção contra CSRF (Cross-Site Request Forgery), o que pode ser necessário para APIs RESTful.
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))//Configura o gerenciamento de sessão para ser sem estado, o que é comum em APIs RESTful.
                 .authorizeHttpRequests(authorizes -> authorizes
+                        .dispatcherTypeMatchers(DispatcherType.ERROR).permitAll() //Permite que as requisições de erro sejam acessadas sem autenticação.
                         .requestMatchers(HttpMethod.POST, "/movieflix/auth/register").permitAll() //Permite que qualquer pessoa acesse o endpoint de registro sem autenticação.
                         .requestMatchers(HttpMethod.POST, "/movieflix/auth/login").permitAll() //Permite que qualquer pessoa acesse o endpoint de login sem autenticação.
                         .anyRequest().authenticated())//Exige autenticação para todas as outras requisições.
